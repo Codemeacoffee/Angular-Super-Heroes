@@ -13,6 +13,11 @@ export class HeroesComponent {
 
   constructor(private heroService: HeroService, private messageService: MessageService) { }
 
+  filterHeroes(filterText: string): void{
+    this.heroService.filterHeroes(filterText)
+        .subscribe(heroes => this.heroes = heroes);
+  }
+
   getHeroes(): void {
     this.heroService.getHeroes()
         .subscribe(heroes => this.heroes = heroes);

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero.interface';
 import { ActivatedRoute } from '@angular/router';
 import { HeroService } from '../hero.service';
@@ -10,7 +10,6 @@ import { HeroService } from '../hero.service';
 })
 export class HeroDetailComponent {
   hero?: Hero;
-  private subscription: any;
 
   constructor(private route: ActivatedRoute, private heroService: HeroService) {}
 
@@ -20,12 +19,8 @@ export class HeroDetailComponent {
   }
 
   ngOnInit() {
-    this.subscription = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.getHero(parseInt(params['id']));
     });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }

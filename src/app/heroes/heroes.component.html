@@ -1,5 +1,7 @@
 <h2>Lista de Superhéroes</h2>
 
+<input id="filter-heroes" type="text" placeholder="Filtrar héroes" #filterInput (keyup)="filterHeroes(filterInput.value)">
+
 <ul class="heroes">
     <li *ngFor="let hero of heroes">
         <a [routerLink]="['/hero', hero.id]">
