@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { MessageService } from './message.service';
 import { Hero } from './hero.interface';
 import { listOfHeroes } from './fake-heroe-list';
 
@@ -8,10 +9,11 @@ import { listOfHeroes } from './fake-heroe-list';
 })
 export class HeroService {
 
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   getHeroes(): Observable<Hero[]> {
     const heroes = of(listOfHeroes);
+    this.messageService.add('Se ha cargado la lista de héroes.');
     return heroes;
-  }
+}
 }
