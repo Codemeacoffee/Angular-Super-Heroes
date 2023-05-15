@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Hero } from '../hero.interface';
+import { listOfHeroes } from '../fake-heroe-list';
 
 @Component({
   selector: 'app-heroes',
@@ -7,8 +8,11 @@ import { Hero } from '../hero.interface';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent {
-  hero: Hero = {
-    id: 1,
-    name: 'Windstorm'
-  };
+  heroes = listOfHeroes;
+
+  selectedHero?: Hero;
+  
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
+  }
 }
