@@ -23,6 +23,15 @@ export class HeroService {
     return heroes;
   }
 
+  newHero(name: string): void {
+    let id = 0;
+    const lastHero = listOfHeroes[listOfHeroes.length - 1];
+ 
+    if(lastHero) id = lastHero.id + 1;
+
+    listOfHeroes.push({id: id, name: name});
+  }
+
   editHero(id: number, name: string): void{
     const hero = listOfHeroes.find(hero => hero.id === id);
 
