@@ -1,27 +1,38 @@
-<h2>Lista de Superhéroes</h2>
-
-<div>
-    <mat-form-field appearance="fill">
-      <mat-label>Filtrar héroes</mat-label>
-      <input matInput id="filter-heroes" type="text" [(ngModel)]="filterText" (keyup)="filterHeroes()">
-    </mat-form-field>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12 offset-0 mt-3">
+            <h1 class="title text-white text-center mb-4">Lista de Superhéroes</h1>
+           
+            <div class="row">
+                <div class="col-xl-9 col-lg-8 col-md-7 col-6">
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Filtrar héroes</mat-label>
+                        <input matInput id="filter-heroes" type="text" [(ngModel)]="filterText" (keyup)="filterHeroes()">
+                        </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-5 col-6">
+                    <div class="text-center h-100 pb-4">
+                        <a routerLink="/newHero">
+                            <button class="w-100 h-100" mat-raised-button color="primary" type="button">Añadir nuevo héroe</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <mat-card class="mb-3" *ngFor="let hero of paginatedHeroes">
+                <mat-card-header>
+                    <mat-card-title>{{hero.name | titlecase}}</mat-card-title>
+                    <mat-card-subtitle><b>ID:</b> {{hero.id}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-actions>
+                    <a class="me-3" [routerLink]="['/hero', hero.id]">
+                        <button type="button" mat-raised-button color="primary">Editar</button>
+                    </a>
+                    <button mat-raised-button color="warn" (click)="deleteHero(hero.id)" type="button">Borrar</button>
+                </mat-card-actions>
+            </mat-card>
+            
+            <mat-paginator [length]="heroes.length" [pageIndex]="pageIndex" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25]" (page)="onPageChange($event)" aria-label="Selecciona una página"></mat-paginator>
+        </div>
+    </div>
 </div>
-
-<mat-card *ngFor="let hero of paginatedHeroes">
-    <mat-card-header>
-        <mat-card-title>{{hero.name | titlecase}}</mat-card-title>
-        <mat-card-subtitle><b>ID:</b> {{hero.id}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-actions>
-        <a [routerLink]="['/hero', hero.id]">
-            <button type="button" mat-raised-button color="primary">Editar</button>
-        </a>
-        <button mat-raised-button color="warn" (click)="deleteHero(hero.id)" type="button">Borrar</button>
-    </mat-card-actions>
-</mat-card>
-
-<mat-paginator [length]="heroes.length" [pageIndex]="pageIndex" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25]" (page)="onPageChange($event)" aria-label="Selecciona una página"></mat-paginator>
-
-<a routerLink="/newHero">
-    <button mat-raised-button color="primary" type="button">Añadir</button>
-</a>
