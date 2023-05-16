@@ -2,7 +2,7 @@
   <h2>Editar a {{hero.name | uppercase}}</h2>
   <div>
     <label for="hero-name">Nombre: </label>
-    <input id="hero-name" [(ngModel)]="editedHeroName" placeholder="name">
+    <input id="hero-name" [(ngModel)]="editedHeroName" [placeholder]="hero.name">
   </div>
 </div>
 <a routerLink="/">
