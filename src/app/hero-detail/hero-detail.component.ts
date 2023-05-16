@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Hero } from '../hero.interface';
 import { ActivatedRoute } from '@angular/router';
 import { HeroService } from '../hero.service';
@@ -9,6 +9,7 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./hero-detail.component.css']
 })
 export class HeroDetailComponent {
+  editedHeroName?: string;
   hero?: Hero;
 
   constructor(private route: ActivatedRoute, private heroService: HeroService) {}
@@ -16,6 +17,10 @@ export class HeroDetailComponent {
   getHero(id: number): void {
     this.heroService.getHero(id)
         .subscribe(hero => this.hero = hero);
+  }
+
+  editHero(id: number): void{
+    if(this.editedHeroName) this.heroService.editHero(id, this.editedHeroName);
   }
 
   ngOnInit() {

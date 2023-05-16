@@ -23,6 +23,10 @@ export class HeroesComponent {
         .subscribe(heroes => this.heroes = heroes);
   }
 
+  deleteHero(id: number): void {
+    this.heroService.deleteHero(id);
+  }
+
   ngOnInit(): void {
     this.getHeroes();
   }
