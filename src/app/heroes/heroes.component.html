@@ -8,18 +8,18 @@
                     <mat-form-field class="w-100" appearance="fill">
                         <mat-label>Filtrar héroes</mat-label>
                         <input matInput id="filter-heroes" type="text" [(ngModel)]="filterText" (keyup)="filterHeroes()">
-                        </mat-form-field>
+                    </mat-form-field>
                 </div>
                 <div class="col-xl-3 col-lg-4 col-md-5 col-6">
                     <div class="text-center h-100 pb-4">
                         <a routerLink="/newHero">
-                            <button class="w-100 h-100" mat-raised-button color="primary" type="button">Añadir nuevo héroe</button>
+                            <button class="w-100 h-100" mat-raised-button color="primary" type="button">+ Añadir nuevo héroe</button>
                         </a>
                     </div>
                 </div>
             </div>
             
-            <mat-card class="mb-3" *ngFor="let hero of paginatedHeroes">
+            <mat-card class="mb-3 px-3 pb-3" *ngFor="let hero of paginatedHeroes">
                 <mat-card-header>
                     <mat-card-title>{{hero.name | titlecase}}</mat-card-title>
                     <mat-card-subtitle><b>ID:</b> {{hero.id}}</mat-card-subtitle>
@@ -32,7 +32,7 @@
                 </mat-card-actions>
             </mat-card>
             
-            <mat-paginator [length]="heroes.length" [pageIndex]="pageIndex" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25]" (page)="onPageChange($event)" aria-label="Selecciona una página"></mat-paginator>
+            <mat-paginator [length]="heroes.length" [pageIndex]="pageIndex" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange($event)" aria-label="Selecciona una página"></mat-paginator>
         </div>
     </div>
 </div>

@@ -1,15 +1,23 @@
-<div>
-    <h2>¡Crea tu nuevo superhéroe!</h2>
-    <div>
-        <label for="hero-name">Nombre: </label>
-        <input id="hero-name" [(ngModel)]="newHeroName" placeholder="name">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12 offset-0 mt-3">
+          <div>
+            <h1 class="text-white">¡Crea tu nuevo superhéroe!</h1>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput type="text" [(ngModel)]="newHeroName" placeholder="¡Elige un nombre!">
+              </mat-form-field>
+            </div>
+          </div>
+          <a class="me-3" routerLink="/">
+            <button mat-raised-button color="warn" type="button">
+                Atrás
+            </button>
+          </a>
+          <button mat-raised-button color="primary" type="button" (click)="newHero()">
+            Guardar
+          </button>
+        </div>
     </div>
-</div>
-<a routerLink="/">
-<button type="button">
-    Atrás
-</button>
-</a>
-<button type="button" (click)="newHero()">
-Crear
-</button>
+  </div>

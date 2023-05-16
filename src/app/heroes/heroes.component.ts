@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Hero } from '../hero.interface';
 import { HeroService } from '../hero.service';
 import { PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { MessageComponent } from '../message/message.component';
 
 @Component({
   selector: 'app-heroes',
@@ -15,7 +17,7 @@ export class HeroesComponent {
   pageSize = 5;
   pageIndex = 0;
 
-  constructor(private heroService: HeroService) { 
+  constructor(private heroService: HeroService, public dialog: MatDialog) { 
     this.heroService.getHeroes()
     .subscribe(
       (heroes) => {
@@ -36,12 +38,24 @@ export class HeroesComponent {
   }
 
   deleteHero(id: number): void {
-    this.heroService.deleteHero(id);
-    this.filterHeroes();
+    const dialogRef = this.dialog.open(MessageComponent, {
+      data: {
+        title: 'Borrar héroe',
+        content: '¿Estas seguro de que quieres borrar este héroe?'
+      },
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.heroService.deleteHero(id);
+        this.filterHeroes();
+      }
+    });
   }
 
   onPageChange(event: PageEvent){
     this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
     this.updatePaginator();
   }
 
