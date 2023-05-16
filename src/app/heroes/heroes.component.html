@@ -3,7 +3,7 @@
 <div>
     <mat-form-field appearance="fill">
       <mat-label>Filtrar héroes</mat-label>
-      <input matInput id="filter-heroes" type="text"  #filterInput (keyup)="filterHeroes(filterInput.value)">
+      <input matInput id="filter-heroes" type="text" [(ngModel)]="filterText" (keyup)="filterHeroes()">
     </mat-form-field>
 </div>
 
@@ -20,7 +20,7 @@
     </mat-card-actions>
 </mat-card>
 
-<mat-paginator #paginator [length]="heroes.length"  [pageSizeOptions]="[displayedHeroes, 10, 25]" (page)="onPageChange($event)" aria-label="Selecciona una página"></mat-paginator>
+<mat-paginator [length]="heroes.length" [pageIndex]="pageIndex" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25]" (page)="onPageChange($event)" aria-label="Selecciona una página"></mat-paginator>
 
 <a routerLink="/newHero">
     <button mat-raised-button color="primary" type="button">Añadir</button>

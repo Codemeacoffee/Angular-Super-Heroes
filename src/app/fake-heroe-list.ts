@@ -9,5 +9,5 @@ export const listOfHeroes: Hero[] = [
   { id: 5, name: 'Ojo de Halcón' },
   { id: 6, name: 'Spiderman' },
   { id: 7, name: 'Capitana Marvel' },
-  { id: 8, name: 'Doctor Extraño' }
+  { id: 8, name: 'Doctor Extraño' },
 ];

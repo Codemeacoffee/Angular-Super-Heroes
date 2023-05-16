@@ -10,37 +10,49 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 })
 export class HeroesComponent {
   heroes: Hero[] = [];
-
-  //Pagination
-  @ViewChild('paginator') paginator!: MatPaginator;
   paginatedHeroes: Hero[] = [];
-  displayedHeroes = 5;
+  filterText: string = '';
+  pageSize = 5;
+  pageIndex = 0;
 
-  constructor(private heroService: HeroService) { }
-
-  filterHeroes(filterText: string): void{
-    this.heroService.filterHeroes(filterText).subscribe(heroes => this.heroes = heroes);
-    this.paginatedHeroes = this.heroes.slice(0, this.displayedHeroes); 
-    this.paginator.firstPage();
+  constructor(private heroService: HeroService) { 
+    this.heroService.getHeroes()
+    .subscribe(
+      (heroes) => {
+        this.heroes = heroes;
+        this.updatePaginator()
+      }
+    );
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
-    this.paginatedHeroes = this.heroes.slice(0, this.displayedHeroes); 
+  filterHeroes(): void{
+    this.heroService.filterHeroes(this.filterText)
+    .subscribe(
+      (heroes) => {
+        this.heroes = heroes;
+        this.updatePaginator()
+      }
+    );
   }
 
   deleteHero(id: number): void {
     this.heroService.deleteHero(id);
+    this.filterHeroes();
   }
 
-  onPageChange(event: PageEvent) : void{
-    const startIndex = event.pageIndex * event.pageSize;
-    let endIndex = startIndex + event.pageSize;
+  onPageChange(event: PageEvent){
+    this.pageIndex = event.pageIndex;
+    this.updatePaginator();
+  }
+
+  updatePaginator(): void{
+    const startIndex = this.pageIndex * this.pageSize;
+    let endIndex = startIndex + this.pageSize;
+
     if(endIndex > this.heroes.length) endIndex = this.heroes.length;
-    this.paginatedHeroes = this.heroes.slice(startIndex, endIndex); 
-  }
-
-  ngOnInit(): void {
-    this.getHeroes();
+    if(this.heroes.length && startIndex >= this.heroes.length){
+      this.pageIndex = this.pageIndex -1;
+      this.updatePaginator();
+    }else this.paginatedHeroes = this.heroes.slice(startIndex, endIndex); 
   }
 }

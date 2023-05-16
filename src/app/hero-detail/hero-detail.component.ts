@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Hero } from '../hero.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HeroService } from '../hero.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class HeroDetailComponent {
   editedHeroName?: string;
   hero?: Hero;
 
-  constructor(private route: ActivatedRoute, private heroService: HeroService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private heroService: HeroService) {}
 
   getHero(id: number): void {
     this.heroService.getHero(id)
@@ -21,6 +21,7 @@ export class HeroDetailComponent {
 
   editHero(id: number): void{
     if(this.editedHeroName) this.heroService.editHero(id, this.editedHeroName);
+    this.router.navigate(['/']);
   }
 
   ngOnInit() {
