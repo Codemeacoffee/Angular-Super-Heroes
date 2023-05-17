@@ -1,14 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditHeroComponent } from './edit-hero.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('HeroDetailComponent', () => {
+describe('EditHeroComponent', () => {
   let component: EditHeroComponent;
   let fixture: ComponentFixture<EditHeroComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EditHeroComponent]
+      declarations: [EditHeroComponent],
+      imports: [RouterTestingModule]
     });
     fixture = TestBed.createComponent(EditHeroComponent);
     component = fixture.componentInstance;

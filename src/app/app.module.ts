@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { EditHeroComponent } from './edit-hero/edit-hero.component';
 import { NewHeroComponent } from './new-hero/new-hero.component';
+import { MessageComponent } from './message/message.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -15,7 +16,6 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MessageComponent } from './message/message.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
