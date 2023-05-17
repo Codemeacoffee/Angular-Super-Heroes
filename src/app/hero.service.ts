@@ -8,9 +8,10 @@ import { listOfHeroes } from './fake-heroe-list';
 })
 export class HeroService {
 
-  getHero(id: number):  Observable<Hero | undefined> {
-    const hero = of(listOfHeroes.find(hero => hero.id === id));
-    return hero;
+  getHero(id: number):  Observable<Hero | false> {
+    const hero = listOfHeroes.find(hero => hero.id === id);
+    if(hero) return of(hero);
+    else return of(false);
   }
 
   getHeroes(): Observable<Hero[]> {

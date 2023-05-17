@@ -27,4 +27,16 @@ describe('HeroesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('the paginatedHeroes array should be smaller than the heroes array', () => {
+    expect(component.paginatedHeroes.length).toBeLessThan(component.heroes.length);
+  });
+
+  it('filterHeroes() should update the pagination', () => {
+    let previouslyPaginatedHeroes = component.paginatedHeroes;
+    component.filterText = 'after this filter is applied, the filtered array should be empty';
+    component.filterHeroes();
+
+    expect(component.paginatedHeroes.length).toBeLessThan(previouslyPaginatedHeroes.length);
+  });
 });

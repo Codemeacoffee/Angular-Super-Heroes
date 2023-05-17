@@ -16,7 +16,12 @@ export class EditHeroComponent {
 
   getHero(id: number): void {
     this.heroService.getHero(id)
-        .subscribe(hero => this.hero = hero);
+        .subscribe(
+          (hero) => {
+            if(hero) this.hero = hero;
+            else this.router.navigate(['/']);
+          }
+        );
   }
 
   editHero(id: number): void{
