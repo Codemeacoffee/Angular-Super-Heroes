@@ -5,8 +5,7 @@ import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-hero',
-  templateUrl: './new-hero.component.html',
-  styleUrls: ['./new-hero.component.css']
+  templateUrl: './new-hero.component.html'
 })
 export class NewHeroComponent {
   newHeroName = new FormControl('', [Validators.required, Validators.minLength(2)]);

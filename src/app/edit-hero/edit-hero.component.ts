@@ -6,8 +6,7 @@ import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-hero',
-  templateUrl: './edit-hero.component.html',
-  styleUrls: ['./edit-hero.component.css']
+  templateUrl: './edit-hero.component.html'
 })
 export class EditHeroComponent {
   editedHeroName = new FormControl('', [Validators.required, Validators.minLength(2)]);
