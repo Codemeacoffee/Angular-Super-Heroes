@@ -41,7 +41,7 @@ export class HeroesComponent {
     const dialogRef = this.dialog.open(MessageComponent, {
       data: {
         title: 'Borrar héroe',
-        content: '¿Estas seguro de que quieres borrar este héroe?'
+        content: '¿Estás seguro de que quieres borrar este héroe?'
       },
     });
     
